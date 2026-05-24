@@ -1,16 +1,74 @@
 export default function Home() {
-  return (
-    <main style={{ minHeight: "100vh", background: "#fff5f7", padding: 24, fontFamily: "sans-serif" }}>
-      <div style={{ maxWidth: 420, margin: "0 auto", textAlign: "center" }}>
-        <h1 style={{ color: "#ff5c8a" }}>보험상담소</h1>
-        <p>Let's go with LEGO</p>
+  const menus = [
+    "출퇴근 보고",
+    "자료실",
+    "보험사 연락처",
+    "원수사 연락망",
+    "공지사항",
+  ];
 
-        <div style={{ display: "grid", gap: 12, marginTop: 24 }}>
-          <button type="button">출퇴근 보고 준비중</button>
-          <button type="button">자료실 준비중</button>
-          <button type="button">보험사 연락처 준비중</button>
-          <button type="button">원수사 연락망 준비중</button>
-          <button type="button">공지사항 준비중</button>
+  return (
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#fff5f7",
+        padding: "40px 20px",
+        fontFamily: "sans-serif",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "420px",
+          margin: "0 auto",
+          background: "white",
+          borderRadius: "24px",
+          padding: "24px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h1
+          style={{
+            color: "#ff5c8a",
+            textAlign: "center",
+            fontSize: "32px",
+            marginBottom: "8px",
+          }}
+        >
+          보험상담소
+        </h1>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#888",
+            marginBottom: "28px",
+          }}
+        >
+          Let's go with LEGO
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gap: "14px",
+          }}
+        >
+          {menus.map((menu) => (
+            <button
+              key={menu}
+              onClick={() => alert(`${menu} 준비중`)}
+              style={{
+                border: "1px solid #ffd1dc",
+                background: "white",
+                padding: "18px",
+                borderRadius: "18px",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+            >
+              {menu}
+            </button>
+          ))}
         </div>
       </div>
     </main>
