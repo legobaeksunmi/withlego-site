@@ -1,0 +1,23 @@
+{
+  "name": "보험상담소",
+  "short_name": "보험상담소",
+  "description": "AFG LEGO 본부 보험상담소",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff1f2",
+  "theme_color": "#fb7185",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
