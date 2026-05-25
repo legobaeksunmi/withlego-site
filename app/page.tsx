@@ -38,6 +38,7 @@ import {
   Home as HomeIcon,
   MapPin,
   Megaphone,
+  AlertTriangle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -342,6 +343,13 @@ const menuItems = [
     isAttendance: true
   },
   {
+    title: "오류 보고",
+    description: "",
+    icon: AlertTriangle,
+    href: "#error-report",
+    isErrorReport: true
+  },
+  {
     title: "자료실",
     description: "",
     icon: FolderOpen,
@@ -417,6 +425,15 @@ const [isSaving, setIsSaving] = useState(false)
     giftManagement: ""
   })
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<number | null>(null)
+
+  // 오류 보고 관련 상태
+  const [showErrorReport, setShowErrorReport] = useState(false)
+  const [showErrorReportModal, setShowErrorReportModal] = useState(false)
+  const [newErrorReport, setNewErrorReport] = useState({
+    title: "",
+    description: "",
+    reporter: ""
+  })
 
   // 자료실 관련 상태
   const [showResources, setShowResources] = useState(false)
@@ -826,6 +843,8 @@ const handleMenuClick = (item: typeof menuItems[0]) => {
       window.open(item.href, "_blank")
     } else if (item.isAttendance) {
       setShowAttendanceBoard(true)
+    } else if ((item as { isErrorReport?: boolean }).isErrorReport) {
+      setShowErrorReport(true)
     } else if (item.isResources) {
       setShowResources(true)
 } else if ((item as { isInsurance?: boolean }).isInsurance) {
@@ -1752,7 +1771,7 @@ const openWriteModal = () => {
 
               <div className="space-y-4">
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">카테고리</Label>
+                  <Label className="text-sm font-medium text-gray-700">카테���리</Label>
                   <div className="flex gap-2 mt-1.5 flex-wrap">
                     {customNoticeCategories.map((cat) => (
                       <button
@@ -1909,6 +1928,125 @@ const openWriteModal = () => {
                     </div>
                   ))
                 )}
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    )
+  }
+
+  // 오류 보고 화면 UI
+  if (showErrorReport) {
+    return (
+      <main className="min-h-screen bg-rose-50/30">
+        <div className="max-w-2xl mx-auto p-4 md:p-6">
+          {/* 헤더 */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowErrorReport(false)}
+                className="border-rose-200 hover:bg-rose-50"
+              >
+                <ChevronLeft className="h-4 w-4 mr-1" />
+                돌아가기
+              </Button>
+              <h1 className="text-xl md:text-2xl font-bold text-gray-800">오류 보고</h1>
+            </div>
+            <Button
+              onClick={() => setShowErrorReportModal(true)}
+              className="bg-rose-400 hover:bg-rose-500 text-white"
+            >
+              <Plus className="h-4 w-4 mr-1" />
+              오류 보고하기
+            </Button>
+          </div>
+          
+          {/* 안내 메시지 */}
+          <div className="bg-white rounded-2xl shadow-sm border border-rose-100 p-4 md:p-6">
+            <div className="flex items-center gap-2 text-base md:text-lg font-semibold text-gray-800 mb-4">
+              <AlertTriangle className="h-5 w-5 text-rose-400" />
+              오류 보고 게시판
+            </div>
+            
+            <div className="text-center py-8 text-gray-500">
+              <AlertTriangle className="h-12 w-12 mx-auto mb-4 text-rose-300" />
+              <p className="mb-2">시스템 오류를 발견하셨나요?</p>
+              <p className="text-sm text-gray-400">오른쪽 상단의 &quot;오류 보고하기&quot; 버튼을 눌러 알려주세요.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 오류 보고 모달 */}
+        {showErrorReportModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-semibold text-gray-800">오류 보고 작성</h2>
+                <button
+                  onClick={() => setShowErrorReportModal(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="reporter" className="text-sm font-medium text-gray-700">보고자 이름</Label>
+                  <Input
+                    id="reporter"
+                    value={newErrorReport.reporter}
+                    onChange={(e) => setNewErrorReport({...newErrorReport, reporter: e.target.value})}
+                    placeholder="이름을 입력해주세요"
+                    className="mt-1 border-rose-200 focus:ring-rose-400"
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="errorTitle" className="text-sm font-medium text-gray-700">오류 제목</Label>
+                  <Input
+                    id="errorTitle"
+                    value={newErrorReport.title}
+                    onChange={(e) => setNewErrorReport({...newErrorReport, title: e.target.value})}
+                    placeholder="오류 제목을 입력해주세요"
+                    className="mt-1 border-rose-200 focus:ring-rose-400"
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="errorDescription" className="text-sm font-medium text-gray-700">오류 내용</Label>
+                  <Textarea
+                    id="errorDescription"
+                    value={newErrorReport.description}
+                    onChange={(e) => setNewErrorReport({...newErrorReport, description: e.target.value})}
+                    placeholder="어떤 오류가 발생했는지 자세히 설명해주세요"
+                    className="mt-1 border-rose-200 focus:ring-rose-400 min-h-[120px]"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex gap-3 mt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowErrorReportModal(false)}
+                  className="flex-1 border-rose-200 hover:bg-rose-50"
+                >
+                  취소
+                </Button>
+                <Button
+                  onClick={() => {
+                    // DB 저장 없이 임시로 알림만 표시
+                    alert(`오류 보고가 접수되었습니다.\n\n보고자: ${newErrorReport.reporter}\n제목: ${newErrorReport.title}\n내용: ${newErrorReport.description}`)
+                    setNewErrorReport({ title: "", description: "", reporter: "" })
+                    setShowErrorReportModal(false)
+                  }}
+                  className="flex-1 bg-rose-400 hover:bg-rose-500 text-white"
+                >
+                  보고하기
+                </Button>
               </div>
             </div>
           </div>
@@ -5360,7 +5498,7 @@ const openEditBranchManagerModal = (bm: BranchManager, insurance: InsuranceCompa
               )
             ) : (
               <div className="text-center py-8 text-gray-400">
-                달력에서 날짜를 클릭하면 상세 정보가 표시됩니다.
+                달력에서 ���짜를 클릭하면 상세 정보가 표시됩니다.
               </div>
             )}
           </div>
@@ -5625,8 +5763,7 @@ const openEditBranchManagerModal = (bm: BranchManager, insurance: InsuranceCompa
                 key={item.title}
                 onClick={() => handleMenuClick(item)}
                 className={cn(
-                  "bg-white rounded-2xl p-4 shadow-sm border border-rose-100 transition-all h-[88px] md:h-[96px] flex items-center",
-                  (item.isExternal || item.isCalendar || item.isAttendance || item.isResources) && "cursor-pointer hover:shadow-md hover:border-rose-200 active:scale-[0.98]"
+                  "bg-white rounded-2xl p-4 shadow-sm border border-rose-100 transition-all h-[88px] md:h-[96px] flex items-center cursor-pointer hover:shadow-md hover:border-rose-200 active:scale-[0.98]"
                 )}
               >
                 <div className="flex gap-3 items-center w-full">
