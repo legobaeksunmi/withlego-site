@@ -16,7 +16,7 @@ export default function Home() {
       const ampm = hours < 12 ? "오전" : "오후";
       const displayHours = hours % 12 || 12;
       const displayMinutes = minutes.toString().padStart(2, "0");
-      
+
       return `${year}년 ${month}월 ${day}일 ${ampm} ${displayHours}:${displayMinutes}`;
     };
 
@@ -28,104 +28,135 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const menuItems = [
-    { label: "출퇴근 보고", href: "#" },
-    { label: "원수사 연락망", href: "#" },
-    { label: "보험사 연락처", href: "#" },
-    { label: "자료실", href: "#" },
-    { label: "공지사항", href: "#" },
-    { label: "오류보고", href: "#" },
-  ];
-
   return (
     <main
       style={{
         minHeight: "100vh",
         background: "#fff5f7",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "sans-serif",
+        padding: "20px",
       }}
     >
+      <h1
+        style={{
+          color: "#111",
+          fontSize: "28px",
+          fontWeight: "bold",
+          marginBottom: "8px",
+        }}
+      >
+        보험상담소
+      </h1>
+
+      <p
+        style={{
+          color: "#ff6b8a",
+          fontSize: "14px",
+          marginBottom: "24px",
+        }}
+      >
+        Let&apos;s go with LEGO
+      </p>
+
+      {/* 현재 시간 표시 */}
+      <p
+        style={{
+          color: "#888",
+          fontSize: "14px",
+          marginBottom: "20px",
+        }}
+      >
+        {currentTime}
+      </p>
+
+      {/* 메뉴 그리드 */}
       <div
         style={{
-          width: "360px",
-          background: "white",
-          padding: "32px",
-          borderRadius: "24px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "16px",
+          width: "100%",
+          maxWidth: "600px",
+        }}
+      >
+        {/* 출퇴근 보고 */}
+        <div style={menuCard}>
+          <span style={iconStyle}>➡️</span>
+          <h3 style={menuTitle}>출퇴근 보고</h3>
+        </div>
+
+        {/* 오류 보고 */}
+        <div style={menuCard}>
+          <span style={iconStyle}>⚠️</span>
+          <h3 style={menuTitle}>오류 보고</h3>
+        </div>
+
+        {/* 자료실 */}
+        <div style={menuCard}>
+          <span style={iconStyle}>📁</span>
+          <h3 style={menuTitle}>자료실</h3>
+        </div>
+
+        {/* 보험사 연락처 */}
+        <div style={menuCard}>
+          <span style={iconStyle}>📞</span>
+          <h3 style={menuTitle}>보험사 연락처</h3>
+        </div>
+
+        {/* 원수사 연락망 */}
+        <div style={menuCard}>
+          <span style={iconStyle}>👥</span>
+          <h3 style={menuTitle}>원수사 연락망</h3>
+        </div>
+
+        {/* 공지사항 */}
+        <div style={menuCard}>
+          <span style={iconStyle}>📢</span>
+          <h3 style={menuTitle}>공지사항</h3>
+        </div>
+      </div>
+
+      {/* 하단 링크 */}
+      <div
+        style={{
+          marginTop: "32px",
           textAlign: "center",
         }}
       >
-        <h1
-          style={{
-            color: "#ff5c8a",
-            fontSize: "32px",
-            marginBottom: "10px",
-          }}
-        >
-          보험상담소
-        </h1>
-
         <p
           style={{
-            color: "#888",
-            marginBottom: "28px",
+            color: "#aaa",
+            fontSize: "13px",
+            marginBottom: "12px",
           }}
         >
-          Let&apos;s go with LEGO
+          PC 버전 바로가기
         </p>
-
-        {/* 현재 시간 표시 */}
-        <p
-          style={{
-            color: "#666",
-            fontSize: "14px",
-            marginBottom: "16px",
-          }}
-        >
-          {currentTime}
-        </p>
-
-        {/* 2열 메뉴 배치 */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "14px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "16px",
           }}
         >
-          {menuItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              style={btn}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-
-        {/* 하단 바로가기 링크 */}
-        <div
-          style={{
-            marginTop: "24px",
-            fontSize: "12px",
-            color: "#999",
-          }}
-        >
-          <a href="#" style={smallLink}>PC버전 바로가기</a>
-          <br />
-          <a href="#" style={smallLink}>본부통합시트</a>
-          <span style={{ margin: "0 8px", color: "#ccc" }}>|</span>
+          <a
+            href="#"
+            style={bottomLink}
+          >
+            📄 본부통합시트 ↗
+          </a>
           <a
             href="https://drive.google.com/drive/folders/1wiQ_GZf44VjQpvY0MdNfAXbY8CSyN8N2"
             target="_blank"
             rel="noopener noreferrer"
-            style={smallLink}
+            style={bottomLink}
           >
-            소식지
+            📰 소식지 ↗
           </a>
         </div>
       </div>
@@ -133,19 +164,34 @@ export default function Home() {
   );
 }
 
-const btn: React.CSSProperties = {
-  border: "1px solid #ffd1dc",
+const menuCard: React.CSSProperties = {
   background: "white",
-  padding: "16px",
   borderRadius: "16px",
-  fontSize: "16px",
+  padding: "24px",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
   cursor: "pointer",
-  textDecoration: "none",
-  color: "inherit",
-  display: "block",
+  display: "flex",
+  alignItems: "center",
+  gap: "12px",
 };
 
-const smallLink: React.CSSProperties = {
-  color: "#999",
-  textDecoration: "underline",
+const iconStyle: React.CSSProperties = {
+  fontSize: "20px",
+};
+
+const menuTitle: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "500",
+  color: "#333",
+  margin: 0,
+};
+
+const bottomLink: React.CSSProperties = {
+  color: "#666",
+  fontSize: "13px",
+  textDecoration: "none",
+  padding: "8px 16px",
+  borderRadius: "20px",
+  border: "1px solid #eee",
+  background: "white",
 };
