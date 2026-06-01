@@ -1,30 +1,35 @@
 export default function Home() {
+  const menus = [
+    ["출퇴근 보고", "원수사 연락망"],
+    ["보험사 연락처", "자료실"],
+    ["공지사항", "오류보고"],
+  ];
+
   return (
     <main
       style={{
         minHeight: "100vh",
         background: "#fff5f7",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        padding: "40px 20px",
         fontFamily: "sans-serif",
       }}
     >
       <div
         style={{
-          width: "360px",
+          maxWidth: "420px",
+          margin: "0 auto",
           background: "white",
-          padding: "32px",
           borderRadius: "24px",
+          padding: "24px",
           boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-          textAlign: "center",
         }}
       >
         <h1
           style={{
             color: "#ff5c8a",
+            textAlign: "center",
             fontSize: "32px",
-            marginBottom: "10px",
+            marginBottom: "8px",
           }}
         >
           보험상담소
@@ -32,6 +37,7 @@ export default function Home() {
 
         <p
           style={{
+            textAlign: "center",
             color: "#888",
             marginBottom: "28px",
           }}
@@ -45,22 +51,35 @@ export default function Home() {
             gap: "14px",
           }}
         >
-          <button style={btn}>출퇴근 보고</button>
-          <button style={btn}>자료실</button>
-          <button style={btn}>보험사 연락처</button>
-          <button style={btn}>원수사 연락망</button>
-          <button style={btn}>공지사항</button>
+          {menus.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "14px",
+              }}
+            >
+              {row.map((menu) => (
+                <button
+                  key={menu}
+                  onClick={() => alert(`${menu} 준비중`)}
+                  style={{
+                    border: "1px solid #ffd1dc",
+                    background: "white",
+                    padding: "18px",
+                    borderRadius: "18px",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {menu}
+                </button>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </main>
   );
 }
-
-const btn = {
-  border: "1px solid #ffd1dc",
-  background: "white",
-  padding: "16px",
-  borderRadius: "16px",
-  fontSize: "16px",
-  cursor: "pointer",
-};
