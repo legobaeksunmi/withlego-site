@@ -34,24 +34,26 @@ export default function Home() {
       >
         Let&apos;s go with LEGO
       </p>
-<div
-  style={{
-    width: "100%",
-    maxWidth: "600px",
-    textAlign: "right",
-    color: "#888",
-    fontSize: "14px",
-    marginBottom: "12px",
-  }}
->
-  {new Date().toLocaleString("ko-KR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  })}
-</div>
+     
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "600px",
+          textAlign: "right",
+          color: "#888",
+          fontSize: "14px",
+          marginBottom: "12px",
+        }}
+      >
+        {new Date().toLocaleString("ko-KR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        })}
+      </div>
+      
       {/* 메뉴 그리드 */}
       <div
         style={{
