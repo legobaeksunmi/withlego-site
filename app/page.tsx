@@ -34,26 +34,7 @@ export default function Home() {
       >
         Let&apos;s go with LEGO
       </p>
-     
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "600px",
-          textAlign: "right",
-          color: "#888",
-          fontSize: "14px",
-          marginBottom: "12px",
-        }}
-      >
-        {new Date().toLocaleString("ko-KR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "numeric",
-          minute: "2-digit",
-        })}
-      </div>
-      
+
       {/* 메뉴 그리드 */}
       <div
         style={{
@@ -74,6 +55,32 @@ export default function Home() {
           <span style={menuTitle}>출퇴근 보고</span>
         </div>
 
+        {/* 오류 보고 */}
+        <div style={menuCard}>
+          <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span style={menuTitle}>오류 보고</span>
+        </div>
+
+        {/* 자료실 */}
+        <div style={menuCard}>
+          <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span style={menuTitle}>자료실</span>
+        </div>
+
+        {/* 보험사 연락처 */}
+        <div style={menuCard}>
+          <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span style={menuTitle}>보험사 연락처</span>
+        </div>
+
         {/* 원수사 연락망 */}
         <div style={menuCard}>
           <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -85,24 +92,6 @@ export default function Home() {
           <span style={menuTitle}>원수사 연락망</span>
         </div>
 
-        
-
-        {/* 보험사 연락처 */}
-        <div style={menuCard}>
-          <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          <span style={menuTitle}>보험사 연락처</span>
-        </div>
-
-        {/* 자료실 */}
-        <div style={menuCard}>
-          <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-          </svg>
-          <span style={menuTitle}>자료실</span>
-        </div>
-
         {/* 공지사항 */}
         <div style={menuCard}>
           <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -111,22 +100,13 @@ export default function Home() {
           <span style={menuTitle}>공지사항</span>
         </div>
       </div>
-{/* 오류 보고 */}
-        <div style={menuCard}>
-          <svg style={iconStyle} viewBox="0 0 24 24" fill="none" stroke="#ff8fa3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
-          </svg>
-          <span style={menuTitle}>오류 보고</span>
-        </div>
+
       {/* 하단 링크 */}
       <div
         style={{
           marginTop: "32px",
           textAlign: "center",
         }}
-        
       >
         <p
           style={{
@@ -138,15 +118,6 @@ export default function Home() {
           PC 버전 바로가기
         </p>
         <a
-        <span style={{ margin: "0 8px", color: "#ccc" }}>|</span>
-
-<a
-  href="https://drive.google.com/drive/folders/1wiQ_GZf44VjQpvY0MdNfAXbY8CSyN8N2"
-  style={bottomLink}
-  target="_blank"
->
-  소식지
-</a>
           href="#"
           style={bottomLink}
         >
@@ -200,6 +171,6 @@ const bottomLink: React.CSSProperties = {
   borderRadius: "20px",
   border: "1px solid #eee",
   background: "white",
-  display: "flex",
+  display: "inline-flex",
   alignItems: "center",
 };
