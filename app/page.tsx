@@ -1,4 +1,5 @@
-import { LogIn, User, Phone, FolderOpen, Megaphone, Monitor, FileText, Newspaper, HeartHandshake, ExternalLink } from "lucide-react"
+import { LogIn, User, Phone, FolderOpen, Megaphone, FileText, Newspaper, HeartHandshake, ExternalLink } from "lucide-react"
+import { LiveClock } from "@/components/live-clock"
 
 type MenuItem = {
   label: string
@@ -12,7 +13,6 @@ const menuItems: MenuItem[] = [
   { label: "보험사 연락처", mobileLabel: ["보험사", "연락처"], icon: Phone },
   { label: "자료실", icon: FolderOpen },
   { label: "공지사항", icon: Megaphone },
-  { label: "PC버전 바로가기", mobileLabel: ["PC버전", "바로가기"], icon: Monitor },
 ]
 
 const shortcuts = [
@@ -76,25 +76,36 @@ export default function Home() {
               </div>
             )
           })}
+
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-rose-100 transition-all flex flex-col cursor-default">
+            <div className="flex gap-3 items-center w-full mb-3">
+              <div className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center flex-shrink-0">
+                <ExternalLink className="h-5 w-5 text-rose-400" />
+              </div>
+              <h3 className="font-semibold text-gray-800 text-sm md:text-base leading-tight">바로가기</h3>
+            </div>
+            <div className="flex flex-col gap-2">
+              {shortcuts.map((shortcut) => {
+                const Icon = shortcut.icon
+                return (
+                  <a
+                    key={shortcut.label}
+                    href={shortcut.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-rose-50 text-xs md:text-sm text-gray-700 hover:bg-rose-100 transition-colors"
+                  >
+                    <Icon className="h-4 w-4 text-rose-400 shrink-0" />
+                    <span className="flex-1">{shortcut.label}</span>
+                  </a>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          {shortcuts.map((shortcut) => {
-            const Icon = shortcut.icon
-            return (
-              <a
-                key={shortcut.label}
-                href={shortcut.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-rose-100 text-xs text-gray-600 hover:border-rose-200 hover:bg-rose-50 transition-colors whitespace-nowrap"
-              >
-                <Icon className="h-3.5 w-3.5 text-rose-400 shrink-0" />
-                {shortcut.label}
-                <ExternalLink className="h-3 w-3 text-gray-400 shrink-0" />
-              </a>
-            )
-          })}
+        <div className="mt-6">
+          <LiveClock />
         </div>
       </div>
     </main>
