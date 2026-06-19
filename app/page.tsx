@@ -1,17 +1,19 @@
+import Link from "next/link"
 import { LogIn, User, Phone, FolderOpen, Megaphone, FileText, Newspaper, HeartHandshake, ExternalLink } from "lucide-react"
 import { LiveClock } from "@/components/live-clock"
 
 type MenuItem = {
   label: string
+  href: string
   mobileLabel?: [string, string]
   icon: React.ComponentType<{ className?: string }>
 }
 
 const menuItems: MenuItem[] = [
-  { label: "출퇴근 보고", icon: LogIn },
-  { label: "원수사 연락망", mobileLabel: ["원수사", "연락망"], icon: User },
-  { label: "보험사 연락처", mobileLabel: ["보험사", "연락처"], icon: Phone },
-  { label: "자료실", icon: FolderOpen },
+  { label: "출퇴근 보고", href: "/attendance", icon: LogIn },
+  { label: "원수사 연락망", href: "/contacts", mobileLabel: ["원수사", "연락망"], icon: User },
+  { label: "보험사 연락처", href: "/insurance", mobileLabel: ["보험사", "연락처"], icon: Phone },
+  { label: "자료실", href: "/resources", icon: FolderOpen },
 ]
 
 const shortcuts = [
@@ -45,8 +47,9 @@ export default function Home() {
           {menuItems.map((item) => {
             const Icon = item.icon
             return (
-              <div
+              <Link
                 key={item.label}
+                href={item.href}
                 className="bg-white rounded-2xl p-4 shadow-sm border border-rose-100 transition-all h-[88px] md:h-[96px] flex items-center cursor-pointer hover:shadow-md hover:border-rose-200 active:scale-[0.98]"
               >
                 <div className="flex gap-3 items-center w-full">
@@ -72,12 +75,15 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           })}
 
           <div className="flex flex-col gap-3 md:gap-4">
-            <div className="bg-white rounded-2xl p-4 shadow-sm border border-rose-100 transition-all h-[88px] md:h-[96px] flex items-center cursor-pointer hover:shadow-md hover:border-rose-200 active:scale-[0.98]">
+            <Link
+              href="/notices"
+              className="bg-white rounded-2xl p-4 shadow-sm border border-rose-100 transition-all h-[88px] md:h-[96px] flex items-center cursor-pointer hover:shadow-md hover:border-rose-200 active:scale-[0.98]"
+            >
               <div className="flex gap-3 items-center w-full">
                 <div className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center flex-shrink-0">
                   <Megaphone className="h-5 w-5 text-rose-400" />
@@ -86,7 +92,7 @@ export default function Home() {
                   <h3 className="font-semibold text-gray-800 text-sm md:text-base leading-tight">공지사항</h3>
                 </div>
               </div>
-            </div>
+            </Link>
             <LiveClock />
           </div>
 
