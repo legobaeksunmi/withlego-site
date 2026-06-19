@@ -1,13 +1,11 @@
 {
   "name": "withlego-site",
   "private": true,
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
-
   "dependencies": {
     "@supabase/supabase-js": "latest",
     "lucide-react": "latest",
@@ -15,14 +13,13 @@
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
-
   "devDependencies": {
-    "typescript": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "tailwindcss": "latest",
+    "autoprefixer": "latest",
     "postcss": "latest",
-    "autoprefixer": "latest"
+    "tailwindcss": "^3.4.19",
+    "typescript": "latest"
   }
 }
